@@ -12,7 +12,7 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] AnimationCurve nightTimeCurve;
     [SerializeField] Color dayLightColor = Color.white;
 
-   float time;
+   float time = 3600f * 6;
 
     [SerializeField] float timeScale = 60f;
 
