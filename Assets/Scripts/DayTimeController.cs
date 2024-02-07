@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class DayTimeController : MonoBehaviour
 {
     const float secondsInDay = 86400f;
+    const float phaseLength = 900f;
+    const float phasesInDay = 96f;
 
     [SerializeField] Color nightLightColor;
     [SerializeField] AnimationCurve nightTimeCurve;

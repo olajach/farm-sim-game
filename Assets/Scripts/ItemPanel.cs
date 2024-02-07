@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryPanel : MonoBehaviour
+public class ItemPanel : MonoBehaviour
 {
-   [SerializeField] ItemContainer inventory;
-   [SerializeField] List<InventoryButton> buttons;
+   public ItemContainer inventory;
+   public List<InventoryButton> buttons;
 
    private void Start()
    {
@@ -42,5 +42,8 @@ public class InventoryPanel : MonoBehaviour
        }
     }
 
+    public virtual void OnClick(int id)
+    {
 
-}
+    }
+} 
