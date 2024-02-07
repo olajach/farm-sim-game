@@ -5,6 +5,14 @@ using UnityEngine;
 public class ItemToolbarPanel : ItemPanel
 {
     [SerializeField] ToolbarController toolbarController;
+    int currentSelectedTool;
+    
+    private void Start()
+    {
+        Init();
+        toolbarController.onChange += Highlight;
+        Highlight(0);
+    }
 
     public override void OnClick(int id)
     {
@@ -12,7 +20,6 @@ public class ItemToolbarPanel : ItemPanel
         Highlight(id);
     }
 
-    int currentSelectedTool;
 
     public void Highlight(int id)
     {

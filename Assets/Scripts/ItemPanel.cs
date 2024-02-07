@@ -10,8 +10,13 @@ public class ItemPanel : MonoBehaviour
 
    private void Start()
    {
-       SetIndex();
-       Show();
+       Init();
+   }
+
+   public void Init()
+   {
+        SetIndex();
+        Show();
    }
 
     private void OnEnable()

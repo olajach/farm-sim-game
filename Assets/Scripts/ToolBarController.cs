@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class ToolbarController : MonoBehaviour
 {
     [SerializeField] int toolbarSize = 11;
     int selectedTool;
+
+    public Action<int> onChange;
 
     private void Update()
     {
@@ -22,7 +25,7 @@ public class ToolbarController : MonoBehaviour
                 selectedTool -= 1;
                 selectedTool = (selectedTool < 0 ? toolbarSize - 1 : selectedTool);
             }
-            Debug.Log(selectedTool);
+            onChange?.Invoke(selectedTool);
         }
     }
 
