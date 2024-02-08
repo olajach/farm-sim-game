@@ -8,6 +8,12 @@ public class ToolsCharacterController : MonoBehaviour
     Rigidbody2D rgbd2d;
     [SerializeField] float offsetDistance = 1f;
     [SerializeField] float sizeOfInteractableArea = 1.2f;
+    [SerializeField] TileMapReadController tileMapReadController;
+    [SerializeField] float maxDistance = 1.5f;
+    [SerializeField] CropsManager cropsManager;
+
+    Vector3Int selectedTilePosition;
+    bool selectable;
 
     private void Awake()
     {
@@ -17,13 +23,29 @@ public class ToolsCharacterController : MonoBehaviour
 
     private void Update()
     {
+        SelectTile();
+        CanSelectCheck();
         if (Input.GetMouseButtonDown(0))
         {
-            UseTool();
+            UseToolWorld();
+            UseToolGrid();
         }
     }
 
-    private void UseTool()
+    private void SelectTile()
+    {
+        selectedTilePosition = tileMapReadController.GetGridPosition(Input.mousePosition, true);
+    }
+
+    void CanSelectCheck()
+    {
+        Vector2 characterPosition = transform.position;
+        Vector2 cameraPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        selectable = Vector2.Distance(characterPosition, cameraPosition) < maxDistance;
+
+    }
+
+    private void UseToolWorld()
     {
         Vector2 position = rgbd2d.position + character.lastMotionVector * offsetDistance;
 
@@ -40,4 +62,12 @@ public class ToolsCharacterController : MonoBehaviour
         }
     }
 
+    private void UseToolGrid()
+    {
+        if (selectable == true)
+        {
+            cropsManager.Plow(selectedTilePosition);
+        }
+
+    }
 }
