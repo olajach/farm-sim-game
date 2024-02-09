@@ -8186,8 +8186,6 @@ MonoBehaviour:
   sizeOfInteractableArea: 1.2
   tileMapReadController: {fileID: 1410612863}
   maxDistance: 1.5
-  cropsManager: {fileID: 1410612864}
-  plowableTiles: {fileID: 11400000, guid: b5b39f62de4fbb34c852132ceb9bd0d4, type: 2}
 --- !u!114 &1263436734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8614,6 +8612,7 @@ MonoBehaviour:
   player: {fileID: 1263436726}
   inventoryContainer: {fileID: 11400000, guid: edb2cdeecd94a6c468b1218135e21054, type: 2}
   dragAndDropController: {fileID: 1410612861}
+  timeController: {fileID: 1410612860}
 --- !u!4 &1410612859
 Transform:
   m_ObjectHideFlags: 0
@@ -8762,8 +8761,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plowed: {fileID: 11400000, guid: b1ee8c10ac456ff488a71d3262afc9ea, type: 2}
-  seeded: {fileID: 11400000, guid: 19d00d6c16fa1c94e84d8ab52b06cee5, type: 2}
+  seeded: {fileID: 11400000, guid: 18605e231557a274680297f265c15376, type: 2}
   targetTilemap: {fileID: 439213651}
+  cropsSpritePrefab: {fileID: 3725769220505459497, guid: e2d9ba9992ebe4c45904dfe98a1138d1, type: 3}
 --- !u!1 &1428481457
 GameObject:
   m_ObjectHideFlags: 0
