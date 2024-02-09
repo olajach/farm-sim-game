@@ -39,7 +39,7 @@ public class CropsManager : MonoBehaviour
     }
 
 
-    public void Seed (Vector3Int position)
+    public void Seed(Vector3Int position)
     {
         targetTilemap.SetTile(position, seeded);
     }
