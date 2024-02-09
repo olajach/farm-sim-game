@@ -4,10 +4,10 @@ W ramach realizacji projektu postanowiłam zaprojektowac prostą grę typu symul
 
 Mechaniki (funkcje):
 - poruszanie się postacią
+- scinanie drzew
 - sadzenie roslin
 - podlewanie roslin
 - zbieranie roslin
-- głaskanie kotka 🐱
 - cykl dobowy
 - prosty system ekwipunku
 - system pomijania czasu
