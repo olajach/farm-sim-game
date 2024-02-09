@@ -6479,6 +6479,7 @@ MonoBehaviour:
   tileMapReadController: {fileID: 1410612863}
   maxDistance: 1.5
   cropsManager: {fileID: 1410612864}
+  plowableTiles: {fileID: 11400000, guid: b5b39f62de4fbb34c852132ceb9bd0d4, type: 2}
 --- !u!114 &1263436734
 MonoBehaviour:
   m_ObjectHideFlags: 0

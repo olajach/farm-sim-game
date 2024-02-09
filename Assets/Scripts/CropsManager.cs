@@ -17,11 +17,17 @@ public class CropsManager : MonoBehaviour
     Dictionary<Vector2Int, Crops> crops;
 
     private void Start()
+    
     {
         crops = new Dictionary<Vector2Int, Crops>();
     }
 
-    public void Plow(Vector3Int position)
+    public bool Check (Vector3Int position)
+    {
+        return crops.ContainsKey((Vector2Int)position);
+    }
+
+    public void Plow (Vector3Int position)
     {
 
         if (crops.ContainsKey((Vector2Int)position))
@@ -31,7 +37,12 @@ public class CropsManager : MonoBehaviour
 
         CreatePlowedTile(position);
     }
-    
+
+
+    public void Seed (Vector3Int position)
+    {
+        targetTilemap.SetTile(position, seeded);
+    }
 
     private void CreatePlowedTile(Vector3Int position)
     {
@@ -40,6 +51,7 @@ public class CropsManager : MonoBehaviour
 
         targetTilemap.SetTile((Vector3Int)position, plowed);
     }
-
-
 }
+
+
+

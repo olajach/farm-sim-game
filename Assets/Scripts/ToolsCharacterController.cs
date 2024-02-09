@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class ToolsCharacterController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ToolsCharacterController : MonoBehaviour
     [SerializeField] TileMapReadController tileMapReadController;
     [SerializeField] float maxDistance = 1.5f;
     [SerializeField] CropsManager cropsManager;
+    [SerializeField] TileData plowableTiles;
 
     Vector3Int selectedTilePosition;
     bool selectable;
@@ -27,7 +29,10 @@ public class ToolsCharacterController : MonoBehaviour
         CanSelectCheck();
         if (Input.GetMouseButtonDown(0))
         {
-            UseToolWorld();
+            if(UseToolWorld() == true)
+            {
+                return;
+            };
             UseToolGrid();
         }
     }
@@ -45,7 +50,7 @@ public class ToolsCharacterController : MonoBehaviour
 
     }
 
-    private void UseToolWorld()
+    private bool UseToolWorld()
     {
         Vector2 position = rgbd2d.position + character.lastMotionVector * offsetDistance;
 
@@ -57,16 +62,31 @@ public class ToolsCharacterController : MonoBehaviour
             if (hit != null)
             {
                 hit.Hit();
-                break;
+                return true;
             }
         }
+        return false;
     }
 
     private void UseToolGrid()
     {
         if (selectable == true)
         {
-            cropsManager.Plow(selectedTilePosition);
+            TileBase tileBase = tileMapReadController.GetTileBase(selectedTilePosition);
+            TileData tileData = tileMapReadController.GetTileData(tileBase);
+            if (tileData != plowableTiles)
+            {
+                return;
+            }
+
+            if(cropsManager.Check(selectedTilePosition))
+            {
+                cropsManager.Seed(selectedTilePosition);
+            }
+            else
+            {
+                cropsManager.Plow(selectedTilePosition);
+            }
         }
 
     }
