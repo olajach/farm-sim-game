@@ -11,6 +11,7 @@ public class HoeTile : ToolAction
     public override bool OnApplyToTileMap(Vector3Int gridPosition, TileMapReadController tileMapReadController, Item item)
     {
         TileBase tileToPlow = tileMapReadController.GetTileBase(gridPosition);
+        Debug.Log("HoeTile.OnApplyToTileMap: tileToPlow=" + tileToPlow);
 
         if (canPlow.Contains(tileToPlow) == false)
         {
