@@ -4,11 +4,13 @@ W ramach realizacji projektu postanowiłam zaprojektowac prostą grę typu symul
 
 Mechaniki (funkcje):
 - poruszanie się postacią
+- animacja postaci
 - scinanie drzew
 - sadzenie roslin
-- podlewanie roslin
+- cykl wzrostu roslin
 - zbieranie roslin
 - cykl dobowy
+- liczenie uplywu czasu w swiecie gry
+- system użycia narzędzi aby wykonać daną czynność
 - prosty system ekwipunku
-- system pomijania czasu
-- zmiana ustawien gry (glosnosc, rozdzielczosc)
+- mozliwosc podniesienia przedmiotów po scinaniu drzew i zbieraniu roslin
