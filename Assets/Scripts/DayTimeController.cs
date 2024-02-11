@@ -17,6 +17,7 @@ public class DayTimeController : MonoBehaviour
    float time = 3600f * 6;
 
     [SerializeField] float timeScale = 60f;
+    [SerializeField] float morningTime = 28800f;
 
    [SerializeField] Text text;
    [SerializeField] UnityEngine.Rendering.Universal.Light2D globalLight;
@@ -73,8 +74,12 @@ public class DayTimeController : MonoBehaviour
        }
 
        TimeAgents();
-   }
 
+       if (Input.GetKeyDown(KeyCode.T))
+         {
+              SkipTime(hours: 4);
+        }
+   }
    private void TimeValueCalculation()
    {
         int hh = (int)Hours;
@@ -89,15 +94,20 @@ public class DayTimeController : MonoBehaviour
        globalLight.color = c;
    }
 
-   int oldPhase = 0;
+   int oldPhase = -1;
 
    private void TimeAgents()
    {
-        int currentPhase = (int)(time / phaseLength);
-
-        if (oldPhase != currentPhase)
+        if (oldPhase == -1)
         {
-            oldPhase = currentPhase;
+            oldPhase = CalculatePhase();
+        }
+        
+        int currentPhase = CalculatePhase();
+
+        while (oldPhase < currentPhase)
+        {
+            oldPhase += 1;
             for (int i = 0; i < agents.Count; i++)
             {
                 agents[i].Invoke();
@@ -105,10 +115,39 @@ public class DayTimeController : MonoBehaviour
         }
    }
 
+    private int CalculatePhase()
+    {
+         return (int)(time / phaseLength) + (int)(days * phasesInDay);
+    }
+
    private void NextDay()
    {
-       time = 0;
+       time -= secondsInDay;
        days += 1;
    }
 
+   public void SkipTime(float seconds = 0, float minute = 0, float hours = 0)
+   {
+        float timeToSkip = seconds;
+        timeToSkip += minute * 60f;
+        timeToSkip += hours * 3600f;
+
+        time += timeToSkip;
+   }
+
+    public void SkipToMorning()
+    {
+        float secondsToSkip = 0f;
+
+        if (time> morningTime)
+        {
+            secondsToSkip = secondsInDay - time + morningTime;
+        }
+        else
+        {
+            secondsToSkip += morningTime - time;
+        }
+
+        SkipTime(secondsToSkip);
+    }
 }
